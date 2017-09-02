@@ -1,10 +1,26 @@
 <template>
-    <div id="app">
-        <router-view></router-view>
+    <div>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <router-link class="navbar-item" to="/">
+                    iix-notes
+                </router-link>
+
+                <div class="navbar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        <div id="app">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+    // noinspection JSUnusedGlobalSymbols
     export default {
         name: 'app'
     }
@@ -17,6 +33,6 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+        margin: 60px 20px 0;
     }
 </style>
