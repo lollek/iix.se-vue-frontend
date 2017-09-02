@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="columns is-multiline">
-            <div class="column is-one-quarter" v-for="category in categories" :key="category.id" v-if="category.isVisible()">
+            <div class="column is-one-quarter" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
                 <router-link :to="category.link">
                     <div class="card">
                         <div class="card-image">
