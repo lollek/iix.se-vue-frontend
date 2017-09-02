@@ -129,7 +129,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .table {
+        width: 100%;
+    }
     .table-scrollable {
         overflow-x: scroll;
     }
