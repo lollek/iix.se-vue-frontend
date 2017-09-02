@@ -22,13 +22,13 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Brewery</th>
-                    <th><abbr title="Percentage">%</abbr></th>
-                    <th>Country</th>
-                    <th>Type</th>
-                    <th><abbr title="S Score">S</abbr></th>
-                    <th><abbr title="O Score">O</abbr></th>
+                    <th><a @click="sort('name')">Name</a></th>
+                    <th><a @click="sort('brewery')">Brewery</a></th>
+                    <th><a @click="sort('percentage')"><abbr title="Percentage">%</abbr></a></th>
+                    <th><a @click="sort('country')">Country</a></th>
+                    <th><a @click="sort('style')">Type</a></th>
+                    <th><a @click="sort('sscore')"><abbr title="S Score">S</abbr></a></th>
+                    <th><a @click="sort('oscore')"><abbr title="O Score">O</abbr></a></th>
                 </tr>
                 </thead>
 
@@ -63,12 +63,16 @@
                 ],
                 beverages: [],
                 beveragesBackup: [],
-                filter: undefined
+                filter: undefined,
+                sortBy: 'name',
+                ascending: true
             }
         },
         methods: {
             setCategory (category) {
                 this.category = category
+                this.sortBy = 'name'
+                this.ascending = true
                 this.loadBeverages(category)
             },
             updateFilter: function () {
@@ -88,13 +92,35 @@
             loadBeverages: function (category) {
                 this.$http.get(`http://localhost:8002/api/beverages?category=${category}`)
                     .then(data => {
-                        data.body.sort(function (a, b) {
-                            return a.name.localeCompare(b.name)
-                        })
                         this.beveragesBackup = data.body
+                        this.sort()
                         this.updateFilter()
                     })
                     .catch(error => console.log(error))
+            },
+            sort: function (sortBy) {
+                if (sortBy === this.sortBy) {
+                    this.ascending = !this.ascending
+                } else if (sortBy) {
+                    this.sortBy = sortBy
+                    this.ascending = true
+                }
+                sortBy = this.sortBy
+
+                this.beveragesBackup.sort(function (a, b) {
+                    const aKey = a[sortBy] ? a[sortBy] : ''
+                    const bKey = b[sortBy] ? b[sortBy] : ''
+
+                    if (typeof aKey === 'string') {
+                        return aKey.localeCompare(bKey)
+                    } else {
+                        return aKey - bKey
+                    }
+                })
+                if (!this.ascending) {
+                    this.beveragesBackup = this.beveragesBackup.reverse()
+                }
+                this.updateFilter()
             }
         },
         beforeMount () {
