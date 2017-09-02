@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+set -euo pipefail
+
+npm run build
+sudo docker build -t loll3k/vue-frontend .
