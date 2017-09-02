@@ -4,3 +4,10 @@
         <p>You may have mistyped the address or the page may have moved.</p>
     </div>
 </template>
+
+<script>
+    // noinspection JSUnusedGlobalSymbols
+    export default {
+        name: 'not-found'
+    }
+</script>
