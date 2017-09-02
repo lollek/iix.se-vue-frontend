@@ -12,12 +12,22 @@
         </div>
 
         <div v-for="note in notes" :key="notes.id">
-            <div class="panel">
-                <router-link :to="{ name: 'note', params: { id: note.id } }" class="panel-block space-between">
-                    <p class="text-truncate">{{ note.title }}</p>
-                    <span class="tag is-info is-hidden-mobile">
-                        {{ note.date }}
-                    </span>
+            <div>
+                <router-link :to="{ name: 'note', params: { id: note.id } }" class="space-between">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <div>{{ note.title }}</div>
+                            </div>
+                        </div>
+                        <div class="level-right is-hidden-mobile">
+                            <div class="level-item">
+                                <span class="tag is-info">
+                                    {{ note.date }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </router-link>
             </div>
         </div>
@@ -62,13 +72,14 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .field {
+        margin-bottom: 1.5rem;
+    }
+    .level {
+        margin: 10px;
+    }
     .space-between {
         justify-content: space-between;
-    }
-    .text-truncate {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
 </style>
