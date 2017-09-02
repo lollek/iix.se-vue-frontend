@@ -33,7 +33,8 @@ export default new Router({
         }, {
             path: '/note/:id',
             name: 'note',
-            component: Note
+            component: Note,
+            props: true
         }, {
             path: '/wishlist',
             name: 'wishlist',
