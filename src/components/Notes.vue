@@ -4,8 +4,8 @@
 
         <div class="field">
             <div class="control has-icons-left">
-                <input class="input" placeholder="Filter" @keyup="updateFilter()">
-                <span class="icon is-small is-left">
+                <input class="input" placeholder="Filter" v-model="filter" @keyup="updateFilter()">
+                <span class="icon is-left">
                     <i class="fa fa-search"></i>
                 </span>
             </div>
@@ -14,10 +14,10 @@
         <div v-for="note in notes" :key="notes.id">
             <div class="panel">
                 <router-link :to="{ name: 'note', params: { id: note.id } }" class="panel-block space-between">
-                    <p>{{ note.title }}</p>
-                    <span class="tag is-info">
-                    {{ note.date }}
-                </span>
+                    <p class="text-truncate">{{ note.title }}</p>
+                    <span class="tag is-info is-hidden-mobile">
+                        {{ note.date }}
+                    </span>
                 </router-link>
             </div>
         </div>
@@ -30,7 +30,9 @@
         name: 'notes',
         data () {
             return {
-                notes: []
+                filter: undefined,
+                notes: [],
+                notesBackup: []
             }
         },
         methods: {
@@ -40,12 +42,18 @@
                         notes.body.sort(function (a, b) {
                             return b.date.localeCompare(a.date)
                         })
-                        this.notes = notes.body
+                        this.notesBackup = notes.body
+                        this.updateFilter()
                     })
                     .catch(error => console.log(error))
             },
             updateFilter: function () {
-                console.log('yo!', this.notes)
+                this.notes = this.notesBackup.filter(note => {
+                    if (!this.filter) {
+                        return true
+                    }
+                    return note.title.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1
+                })
             }
         },
         beforeMount () {
@@ -57,5 +65,10 @@
 <style>
     .space-between {
         justify-content: space-between;
+    }
+    .text-truncate {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 </style>
