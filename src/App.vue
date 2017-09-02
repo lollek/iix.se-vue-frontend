@@ -27,6 +27,8 @@
 </script>
 
 <style>
+    @import '../node_modules/bulma/css/bulma.css';
+    @import '../node_modules/font-awesome/css/font-awesome.css';
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
