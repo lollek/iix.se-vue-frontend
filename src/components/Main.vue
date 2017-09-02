@@ -2,7 +2,7 @@
     <div class="main">
         <div class="columns is-multiline">
             <div class="column is-one-quarter" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
-                <router-link :to="category.link">
+                <router-link :to="{ name: category.link }">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image">
@@ -29,27 +29,27 @@
             return {
                 categories: [{
                     text: 'Notes',
-                    link: '/notes',
+                    link: 'notes',
                     img: require('../assets/notes.png'),
                     isVisible: () => true
                 }, {
                     text: 'Beers',
-                    link: '/beverages',
+                    link: 'beverages',
                     img: require('../assets/beers.png'),
                     isVisible: () => true
                 }, {
                     text: 'Wishlist',
-                    link: '/wishlist',
+                    link: 'wishlist',
                     img: require('../assets/wishlist.png'),
                     isVisible: () => true
                 }, {
                     text: 'Moria',
-                    link: '/moria',
+                    link: 'moria',
                     img: require('../assets/moria.png'),
                     isVisible: () => true
                 }, {
                     text: 'Scratch',
-                    link: '/scratch',
+                    link: 'scratch',
                     img: require('../assets/scratch.png'),
                     isVisible: () => false
                 }]
