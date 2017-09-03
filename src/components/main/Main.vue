@@ -30,27 +30,27 @@
                 categories: [{
                     text: 'Notes',
                     link: 'notes',
-                    img: require('../assets/notes.png'),
+                    img: require('./assets/notes.png'),
                     isVisible: () => true
                 }, {
                     text: 'Beers',
                     link: 'beverages',
-                    img: require('../assets/beers.png'),
+                    img: require('./assets/beers.png'),
                     isVisible: () => true
                 }, {
                     text: 'Wishlist',
                     link: 'wishlist',
-                    img: require('../assets/wishlist.png'),
+                    img: require('./assets/wishlist.png'),
                     isVisible: () => true
                 }, {
                     text: 'Moria',
                     link: 'moria',
-                    img: require('../assets/moria.png'),
+                    img: require('./assets/moria.png'),
                     isVisible: () => true
                 }, {
                     text: 'Scratch',
                     link: 'scratch',
-                    img: require('../assets/scratch.png'),
+                    img: require('./assets/scratch.png'),
                     isVisible: () => false
                 }]
             }
