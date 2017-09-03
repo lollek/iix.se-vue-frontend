@@ -65,7 +65,8 @@
                 beveragesBackup: [],
                 filter: undefined,
                 sortBy: 'name',
-                ascending: true
+                ascending: true,
+                modal: this.$modal
             }
         },
         methods: {
@@ -96,7 +97,7 @@
                         this.sort()
                         this.updateFilter()
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => this.$modal.httpError(error))
             },
             sort: function (sortBy) {
                 if (sortBy === this.sortBy) {

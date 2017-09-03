@@ -55,7 +55,7 @@
                         this.notesBackup = notes.body
                         this.updateFilter()
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => this.$modal.httpError(error))
             },
             updateFilter: function () {
                 this.notes = this.notesBackup.filter(note => {

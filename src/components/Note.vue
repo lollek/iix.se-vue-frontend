@@ -25,7 +25,7 @@
                         data.body.text = marked(data.body.text)
                         this.note = data.body
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => this.$modal.httpError(error))
             }
         },
         beforeMount () {
