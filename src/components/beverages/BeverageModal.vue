@@ -4,33 +4,99 @@
         <div class="modal-content">
             <div class="box">
                 <div>
+                    <div class="field" v-if="auth.loggedIn">
+                        <span class="icon has-text-info" v-if="!editing" @click="editing = true">
+                            <i class="fa fa-pencil"></i>
+                        </span>
+                        <span class="icon has-text-success" v-if="editing" @click="save()">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="icon has-text-warning" v-if="editing" @click="cancel()">
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <span class="icon has-text-danger" @click="remove()">
+                            <i class="fa fa-trash"></i>
+                        </span>
+                    </div>
+
                     <div class="field">
                         <div class="label">Name</div>
-                        {{ beverage.name }}
+                        <div class="control" v-if="editing">
+                            <input class="input" v-model="beverage.name">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.name }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">Brewery</div>
-                        {{ beverage.brewery }}
+                        <div class="control" v-if="editing">
+                            <input class="input" v-model="beverage.brewery">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.brewery }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">Percentage</div>
-                        {{ beverage.percentage }}
+                        <div class="control" v-if="editing">
+                            <input class="input" type="number" v-model="beverage.percentage">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.percentage }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">Country</div>
-                        {{ beverage.country }}
+                        <div class="control" v-if="editing">
+                            <input class="input" v-model="beverage.country">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.country }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">Style</div>
-                        {{ beverage.style }}
+                        <div class="control" v-if="editing">
+                            <input class="input" v-model="beverage.style">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.style }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">S Score</div>
-                        {{ beverage.sscore }}
+                        <div class="control" v-if="editing">
+                            <input class="input" type="number" min="1" max="5" v-model="beverage.sscore">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.sscore }}
+                        </p>
                     </div>
+
                     <div class="field">
                         <div class="label">O Score</div>
-                        {{ beverage.oscore }}
+                        <div class="control" v-if="editing">
+                            <input class="input" type="number" min="1" max="5" v-model="beverage.oscore">
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.oscore }}
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <div class="label">Comment</div>
+                        <div class="control" v-if="editing">
+                            <textarea class="textarea" v-model="beverage.comment"></textarea>
+                        </div>
+                        <p v-if="!editing">
+                            {{ beverage.comment }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -40,28 +106,60 @@
 </template>
 
 <script>
+    import auth from '../../services/auth.js'
+    import modal from '../../services/modal.js'
+
     // noinspection JSUnusedGlobalSymbols
     export default {
         name: 'beverage-modal',
         data () {
             return {
+                auth: auth,
                 visible: false,
-                isEditing: false,
-                beverage: {
-                    name: undefined,
-                    brewery: undefined,
-                    percentage: undefined,
-                    country: undefined,
-                    style: undefined,
-                    sscore: undefined,
-                    oscore: undefined
-                },
+                editing: false,
+                beverage: {},
+                backup: undefined,
                 show: function (beverage) {
                     this.beverage = beverage
+                    this.backup = Object.assign({}, beverage)
+                    this.editing = false
                     this.visible = true
                 },
                 hide: function () {
                     this.visible = false
+                },
+                save: function () {
+                    this.backup = Object.assign({}, this.beverage)
+                    if (this.beverage.id) {
+                        this.$http.put(`/api/beverages/${this.beverage.id}`, this.beverage, {
+                            headers: {
+                                Authorization: auth.getAuthHeader()
+                            }
+                        })
+                            .then(data => { this.editing = false })
+                            .catch(error => { modal.httpError(error) })
+                    } else {
+                        this.$http.post('/api/beverages', this.beverage, {
+                            headers: {
+                                Authorization: auth.getAuthHeader()
+                            }
+                        })
+                            .then(data => { this.editing = false })
+                            .catch(error => { modal.httpError(error) })
+                    }
+                },
+                cancel: function () {
+                    this.editing = false
+                    this.beverage = this.backup
+                },
+                remove: function () {
+                    this.$http.delete(`/api/beverages/${this.beverage.id}`, {
+                        headers: {
+                            Authorization: auth.getAuthHeader()
+                        }
+                    })
+                        .then(data => { this.visible = false })
+                        .catch(error => { modal.httpError(error) })
                 }
             }
         }

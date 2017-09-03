@@ -17,11 +17,11 @@ export default {
             .catch(onError)
     },
 
-    logout: function () {
+    logout: function (context) {
         this.setToken(undefined)
     },
 
-    checkLoggedIn: function () {
+    checkLoggedIn: function (context) {
         this.loggedIn = !!this.getToken()
     },
 
@@ -32,5 +32,9 @@ export default {
 
     getToken: function () {
         return localStorage.getItem('jwt')
+    },
+
+    getAuthHeader: function () {
+        return this.getToken() ? `Bearer ${this.getToken()}` : ''
     }
 }

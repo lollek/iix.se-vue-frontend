@@ -104,7 +104,7 @@
                     })
                 },
                 logout: function () {
-                    auth.logout()
+                    auth.logout(this)
                 },
                 navbar: {
                     visible: false,
@@ -115,7 +115,7 @@
             }
         },
         beforeMount () {
-            auth.checkLoggedIn()
+            auth.checkLoggedIn(this)
         }
     }
 </script>

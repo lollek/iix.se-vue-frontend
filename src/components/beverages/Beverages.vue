@@ -99,13 +99,10 @@
                     if (!this.filter) {
                         return true
                     }
-                    if (!beverage.name || !beverage.brewery || !beverage.country || !beverage.style) {
-                        return false
-                    }
-                    return beverage.name.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1 ||
-                        beverage.brewery.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1 ||
-                        beverage.country.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1 ||
-                        beverage.style.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1
+                    return (beverage.name && beverage.name.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1) ||
+                        (beverage.brewery && beverage.brewery.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1) ||
+                        (beverage.country && beverage.country.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1) ||
+                        (beverage.style && beverage.style.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) !== -1)
                 })
             },
             loadBeverages: function (category) {
@@ -147,8 +144,8 @@
                 this.$refs.beverageModal.show(beverage)
             },
             addBeverage: function () {
-                this.$refs.beverageModal.isEditing = true
                 this.$refs.beverageModal.show({ category: this.category })
+                this.$refs.beverageModal.editing = true
             }
         },
         beforeMount () {
