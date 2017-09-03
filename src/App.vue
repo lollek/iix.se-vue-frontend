@@ -31,7 +31,7 @@
                                         <div class="control has-icons-left">
                                             <input class="input"
                                                    placeholder="Username"
-                                                   v-model="user.username"
+                                                   v-model="auth.user.username"
                                                    @keyup.enter="login()">
                                             <span class="icon is-left">
                                         <i class="fa fa-user"></i>
@@ -43,7 +43,7 @@
                                             <input class="input"
                                                    type="password"
                                                    placeholder="Password"
-                                                   v-model="user.password"
+                                                   v-model="auth.user.password"
                                                    @keyup.enter="login()">
                                             <span class="icon is-left">
                                         <i class="fa fa-lock"></i>
@@ -82,37 +82,29 @@
 </template>
 
 <script>
+    import auth from './services/auth.js'
+    import modal from './services/modal.js'
+
     // noinspection JSUnusedGlobalSymbols
     export default {
         name: 'app',
         data () {
             return {
-                modal: this.$modal,
-                auth: this.$auth,
-                user: {
-                    username: '',
-                    password: ''
-                },
+                auth: auth,
+                modal: modal,
                 loginError: '',
                 login: function () {
-                    this.$http.post('/api/login', this.user)
-                        .then(data => {
-                            const authHeader = data.headers.map.authorization[0]
-                            if (authHeader) {
-                                this.$auth.setToken(authHeader.split('Bearer ')[1])
-                                this.loginError = ''
-                            } else {
-                                this.loginError = 'No authorization token received from server'
-                            }
-                        }).catch(error => {
-                            this.loginError = `${error.statusText} (${error.status})`
-                            if (error.bodyText) {
-                                this.loginError += ` - ${error.bodyText}`
-                            }
-                        })
+                    auth.login(this, data => {
+                        this.loginError = ''
+                    }, error => {
+                        this.loginError = `${error.statusText} (${error.status})`
+                        if (error.bodyText) {
+                            this.loginError += ` - ${error.bodyText}`
+                        }
+                    })
                 },
                 logout: function () {
-                    this.$auth.setToken()
+                    auth.logout()
                 },
                 navbar: {
                     visible: false,
@@ -123,7 +115,7 @@
             }
         },
         beforeMount () {
-            this.$auth.checkLoggedIn()
+            auth.checkLoggedIn()
         }
     }
 </script>

@@ -51,6 +51,7 @@
 
 <script>
     import Spinner from './Spinner.vue'
+    import modal from '../services/modal.js'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -70,7 +71,7 @@
                 filter: undefined,
                 sortBy: 'name',
                 ascending: true,
-                modal: this.$modal,
+                modal: modal,
                 loadingData: false
             }
         },
@@ -104,7 +105,7 @@
                         this.updateFilter()
                         this.loadingData = false
                     })
-                    .catch(error => this.$modal.httpError(error))
+                    .catch(error => modal.httpError(error))
             },
             sort: function (sortBy) {
                 if (sortBy === this.sortBy) {

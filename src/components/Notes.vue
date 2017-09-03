@@ -38,6 +38,8 @@
 
 <script>
     import Spinner from './Spinner.vue'
+    import modal from '../services/modal.js'
+
     // noinspection JSUnusedGlobalSymbols
     export default {
         name: 'notes',
@@ -62,7 +64,7 @@
                         this.updateFilter()
                         this.loadingData = false
                     })
-                    .catch(error => this.$modal.httpError(error))
+                    .catch(error => modal.httpError(error))
             },
             updateFilter: function () {
                 this.notes = this.notesBackup.filter(note => {
