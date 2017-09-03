@@ -129,14 +129,17 @@
                     this.visible = false
                 },
                 save: function () {
-                    this.backup = Object.assign({}, this.beverage)
                     if (this.beverage.id) {
                         this.$http.put(`/api/beverages/${this.beverage.id}`, this.beverage, {
                             headers: {
                                 Authorization: auth.getAuthHeader()
                             }
                         })
-                            .then(data => { this.editing = false })
+                            .then(data => {
+                                this.beverage = data.body
+                                this.backup = Object.assign({}, this.beverage)
+                                this.editing = false
+                            })
                             .catch(error => { modal.httpError(error) })
                     } else {
                         this.$http.post('/api/beverages', this.beverage, {
@@ -144,7 +147,11 @@
                                 Authorization: auth.getAuthHeader()
                             }
                         })
-                            .then(data => { this.editing = false })
+                            .then(data => {
+                                this.beverage = data.body
+                                this.backup = Object.assign({}, this.beverage)
+                                this.editing = false
+                            })
                             .catch(error => { modal.httpError(error) })
                     }
                 },
