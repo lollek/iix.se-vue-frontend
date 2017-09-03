@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Modal from './modal'
+import Modal from './plugins/modal'
 
 Vue.config.productionTip = false
 
