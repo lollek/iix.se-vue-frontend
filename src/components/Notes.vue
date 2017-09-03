@@ -47,7 +47,7 @@
         },
         methods: {
             loadNotes: function () {
-                this.$http.get('http://localhost:8002/api/notes')
+                this.$http.get('/api/notes')
                     .then(notes => {
                         notes.body.sort(function (a, b) {
                             return b.date.localeCompare(a.date)

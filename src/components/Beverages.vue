@@ -90,7 +90,7 @@
                 })
             },
             loadBeverages: function (category) {
-                this.$http.get(`http://localhost:8002/api/beverages?category=${category}`)
+                this.$http.get(`/api/beverages?category=${category}`)
                     .then(data => {
                         this.beveragesBackup = data.body
                         this.sort()

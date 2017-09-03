@@ -20,7 +20,7 @@
         },
         methods: {
             loadNote: function (id) {
-                this.$http.get(`http://localhost:8002/api/notes/${id}`)
+                this.$http.get(`/api/notes/${id}`)
                     .then(data => {
                         data.body.text = marked(data.body.text)
                         this.note = data.body
