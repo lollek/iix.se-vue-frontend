@@ -121,6 +121,9 @@
                     }
                 }
             }
+        },
+        beforeMount () {
+            this.$auth.checkLoggedIn()
         }
     }
 </script>
