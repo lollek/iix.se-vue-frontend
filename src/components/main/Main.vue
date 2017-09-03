@@ -2,28 +2,18 @@
     <div class="main">
         <div class="columns is-multiline">
             <div class="column is-one-quarter" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
-                <router-link :to="{ name: category.link }">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img :src="category.img">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                {{ category.text }}
-                            </div>
-                        </div>
-                    </div>
-                </router-link>
+                <main-category :category="category"></main-category>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import MainCategory from './MainCategory.vue'
+
     // noinspection JSUnusedGlobalSymbols
     export default {
+        components: {MainCategory},
         name: 'main',
         data () {
             return {
