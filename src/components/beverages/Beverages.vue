@@ -34,7 +34,7 @@
                 </thead>
 
                 <tbody>
-                <tr v-for="beverage in beverages">
+                <tr v-for="beverage in beverages" :key="beverage.id" @click="showBeer(beverage)">
                     <td>{{ beverage.name }}</td>
                     <td>{{ beverage.brewery }}</td>
                     <td>{{ beverage.percentage || '?' }}%</td>
@@ -46,16 +46,20 @@
                 </tbody>
             </table>
         </div>
+        <beverage-modal ref="beverageModal"></beverage-modal>
     </div>
 </template>
 
 <script>
-    import Spinner from './Spinner.vue'
-    import modal from '../services/modal.js'
+    import Spinner from '../Spinner.vue'
+    import modal from '../../services/modal.js'
+    import BeverageModal from './BeverageModal.vue'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
-        components: {Spinner},
+        components: {
+            BeverageModal,
+            Spinner},
         name: 'beverages',
         data () {
             return {
@@ -130,6 +134,9 @@
                     this.beveragesBackup = this.beveragesBackup.reverse()
                 }
                 this.updateFilter()
+            },
+            showBeer: function (beverage) {
+                this.$refs.beverageModal.show(beverage)
             }
         },
         beforeMount () {
