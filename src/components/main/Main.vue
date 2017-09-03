@@ -13,7 +13,7 @@
 
     // noinspection JSUnusedGlobalSymbols
     export default {
-        components: {MainCategory},
+        components: { MainCategory },
         name: 'main',
         data () {
             return {

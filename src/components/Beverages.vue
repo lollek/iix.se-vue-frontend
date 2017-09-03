@@ -18,7 +18,8 @@
             </div>
         </div>
 
-        <div class="table-scrollable">
+        <spinner v-if="loadingData"></spinner>
+        <div class="table-scrollable" v-if="!loadingData">
             <table class="table">
                 <thead>
                 <tr>
@@ -49,8 +50,11 @@
 </template>
 
 <script>
+    import Spinner from './Spinner.vue'
+
     // noinspection JSUnusedGlobalSymbols
     export default {
+        components: {Spinner},
         name: 'beverages',
         data () {
             return {
@@ -66,7 +70,8 @@
                 filter: undefined,
                 sortBy: 'name',
                 ascending: true,
-                modal: this.$modal
+                modal: this.$modal,
+                loadingData: false
             }
         },
         methods: {
@@ -91,11 +96,13 @@
                 })
             },
             loadBeverages: function (category) {
+                this.loadingData = true
                 this.$http.get(`/api/beverages?category=${category}`)
                     .then(data => {
                         this.beveragesBackup = data.body
                         this.sort()
                         this.updateFilter()
+                        this.loadingData = false
                     })
                     .catch(error => this.$modal.httpError(error))
             },

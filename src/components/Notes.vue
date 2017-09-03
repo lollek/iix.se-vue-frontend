@@ -11,6 +11,8 @@
             </div>
         </div>
 
+        <spinner v-if="loadingData"></spinner>
+
         <div v-for="note in notes" :key="notes.id">
             <div>
                 <router-link :to="{ name: 'note', params: { id: note.id } }" class="space-between">
@@ -35,18 +37,22 @@
 </template>
 
 <script>
+    import Spinner from './Spinner.vue'
     // noinspection JSUnusedGlobalSymbols
     export default {
         name: 'notes',
+        components: { Spinner },
         data () {
             return {
                 filter: undefined,
                 notes: [],
-                notesBackup: []
+                notesBackup: [],
+                loadingData: false
             }
         },
         methods: {
             loadNotes: function () {
+                this.loadingData = true
                 this.$http.get('/api/notes')
                     .then(notes => {
                         notes.body.sort(function (a, b) {
@@ -54,6 +60,7 @@
                         })
                         this.notesBackup = notes.body
                         this.updateFilter()
+                        this.loadingData = false
                     })
                     .catch(error => this.$modal.httpError(error))
             },

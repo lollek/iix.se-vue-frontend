@@ -1,29 +1,37 @@
 <template>
     <div>
-        <h1 class="title">{{ note.title }}</h1>
-        <h2 class="subtitle">{{ note.date }}</h2>
-        <div class="markdown-text" v-html="note.text"></div>
+        <spinner v-if="loadingData"></spinner>
+        <div v-if="!loadingData">
+            <h1 class="title">{{ note.title }}</h1>
+            <h2 class="subtitle">{{ note.date }}</h2>
+            <div class="markdown-text" v-html="note.text"></div>
+        </div>
     </div>
 </template>
 
 <script>
     import marked from 'marked'
+    import Spinner from './Spinner.vue'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
+        components: {Spinner},
         name: 'note',
         props: [ 'id' ],
         data () {
             return {
-                note: {}
+                note: {},
+                loadingData: false
             }
         },
         methods: {
             loadNote: function (id) {
+                this.loadingData = true
                 this.$http.get(`/api/notes/${id}`)
                     .then(data => {
                         data.body.text = marked(data.body.text)
                         this.note = data.body
+                        this.loadingData = false
                     })
                     .catch(error => this.$modal.httpError(error))
             }
