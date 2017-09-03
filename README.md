@@ -26,7 +26,8 @@ npm run build --report
 * [Bulma](http://bulma.io/documentation/overview/start/)
 
 Inspiration:
-* https://github.com/vue-bulma/vue-admin
+* [Vue-Admin](https://github.com/vue-bulma/vue-admin)
+* [Awesome-Vue](https://github.com/vuejs/awesome-vue)
 
 TODO:
 * https://ssr.vuejs.org/en/
