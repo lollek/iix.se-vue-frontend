@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Modal from './plugins/modal'
+import Auth from './plugins/auth'
 
 Vue.config.productionTip = false
 
 Vue.use(Modal)
+Vue.use(Auth)
 
 /* eslint-disable no-new */
 new Vue({
