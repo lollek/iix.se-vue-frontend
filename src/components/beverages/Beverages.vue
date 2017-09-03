@@ -18,6 +18,12 @@
             </div>
         </div>
 
+        <div class="field" v-if="auth.loggedIn">
+            <button class="button is-primary is-outlined is-fullwidth" @click="addBeverage()">
+                Add beverage
+            </button>
+        </div>
+
         <spinner v-if="loadingData"></spinner>
         <div class="table-scrollable" v-if="!loadingData">
             <table class="table">
@@ -34,7 +40,7 @@
                 </thead>
 
                 <tbody>
-                <tr v-for="beverage in beverages" :key="beverage.id" @click="showBeer(beverage)">
+                <tr v-for="beverage in beverages" :key="beverage.id" @click="showBeverage(beverage)">
                     <td>{{ beverage.name }}</td>
                     <td>{{ beverage.brewery }}</td>
                     <td>{{ beverage.percentage || '?' }}%</td>
@@ -52,8 +58,9 @@
 
 <script>
     import Spinner from '../Spinner.vue'
-    import modal from '../../services/modal.js'
     import BeverageModal from './BeverageModal.vue'
+    import modal from '../../services/modal.js'
+    import auth from '../../services/auth.js'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -63,6 +70,7 @@
         name: 'beverages',
         data () {
             return {
+                auth: auth,
                 category: 0,
                 tabs: [
                     { name: 'Beer', category: 0 },
@@ -135,8 +143,12 @@
                 }
                 this.updateFilter()
             },
-            showBeer: function (beverage) {
+            showBeverage: function (beverage) {
                 this.$refs.beverageModal.show(beverage)
+            },
+            addBeverage: function () {
+                this.$refs.beverageModal.isEditing = true
+                this.$refs.beverageModal.show({ category: this.category })
             }
         },
         beforeMount () {

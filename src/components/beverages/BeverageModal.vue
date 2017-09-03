@@ -46,8 +46,8 @@
         data () {
             return {
                 visible: false,
+                isEditing: false,
                 beverage: {
-                    id: undefined,
                     name: undefined,
                     brewery: undefined,
                     percentage: undefined,
