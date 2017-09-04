@@ -10,6 +10,7 @@
 
 <script>
     import MainCategory from './MainCategory.vue'
+    import auth from '../../services/auth.js'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -20,28 +21,28 @@
                 categories: [{
                     text: 'Notes',
                     link: 'notes',
-                    img: require('./assets/notes.png'),
+                    img: require('./assets/notes.jpg'),
                     isVisible: () => true
                 }, {
                     text: 'Beers',
                     link: 'beverages',
-                    img: require('./assets/beers.png'),
+                    img: require('./assets/beers.jpg'),
                     isVisible: () => true
                 }, {
                     text: 'Wishlist',
                     link: 'wishlist',
-                    img: require('./assets/wishlist.png'),
+                    img: require('./assets/wishlist.jpg'),
                     isVisible: () => true
                 }, {
                     text: 'Moria',
                     link: 'moria',
-                    img: require('./assets/moria.png'),
+                    img: require('./assets/moria.jpg'),
                     isVisible: () => true
                 }, {
                     text: 'Scratch',
                     link: 'scratch',
-                    img: require('./assets/scratch.png'),
-                    isVisible: () => false
+                    img: require('./assets/scratch.jpg'),
+                    isVisible: () => auth.loggedIn
                 }]
             }
         }

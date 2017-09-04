@@ -8,6 +8,7 @@ import Note from '@/components/Note'
 import Beverages from '@/components/beverages/Beverages'
 import Wishlist from '@/components/Wishlist'
 import Moria from '@/components/Moria'
+import Scratch from '@/components/Scratch'
 
 Vue.use(Router)
 Vue.use(Resource)
@@ -35,6 +36,10 @@ export default new Router({
             name: 'note',
             component: Note,
             props: true
+        }, {
+            path: '/scratch',
+            name: 'scratch',
+            component: Scratch
         }, {
             path: '/wishlist',
             name: 'wishlist',
