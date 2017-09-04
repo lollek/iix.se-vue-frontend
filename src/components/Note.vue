@@ -12,6 +12,7 @@
 <script>
     import marked from 'marked'
     import Spinner from './Spinner.vue'
+    import modal from '../services/modal.js'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -20,6 +21,7 @@
         props: [ 'id' ],
         data () {
             return {
+                modal: modal,
                 note: {},
                 loadingData: false
             }
@@ -33,7 +35,7 @@
                         this.note = data.body
                         this.loadingData = false
                     })
-                    .catch(error => this.$modal.httpError(error))
+                    .catch(error => modal.httpError(error))
             }
         },
         beforeMount () {

@@ -11,6 +11,14 @@
             </div>
         </div>
 
+        <div class="field" v-if="auth.loggedIn">
+            <router-link :to="{ name: 'note', params: { id: 'new' } }">
+                <button class="button is-primary is-outlined is-fullwidth">
+                    Add note
+                </button>
+            </router-link>
+        </div>
+
         <spinner v-if="loadingData"></spinner>
 
         <div v-for="note in notes" :key="notes.id">
@@ -39,6 +47,7 @@
 <script>
     import Spinner from './Spinner.vue'
     import modal from '../services/modal.js'
+    import auth from '../services/auth.js'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -46,6 +55,7 @@
         components: { Spinner },
         data () {
             return {
+                auth: auth,
                 filter: undefined,
                 notes: [],
                 notesBackup: [],
