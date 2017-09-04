@@ -5,16 +5,16 @@
             <div class="box">
                 <div>
                     <div class="field" v-if="auth.loggedIn">
-                        <span class="icon has-text-info" v-if="!editing" @click="editing = true">
+                        <span class="top-icon icon has-text-info is-medium" v-if="!editing" @click="editing = true">
                             <i class="fa fa-pencil"></i>
                         </span>
-                        <span class="icon has-text-success" v-if="editing" @click="save()">
+                        <span class="top-icon icon has-text-success is-medium" v-if="editing" @click="save()">
                             <i class="fa fa-check"></i>
                         </span>
-                        <span class="icon has-text-warning" v-if="editing" @click="cancel()">
+                        <span class="top-icon icon has-text-warning is-medium" v-if="editing" @click="cancel()">
                             <i class="fa fa-times"></i>
                         </span>
-                        <span class="icon has-text-danger" @click="remove()">
+                        <span class="top-icon icon has-text-danger is-medium" @click="remove()">
                             <i class="fa fa-trash"></i>
                         </span>
                     </div>
@@ -174,4 +174,7 @@
 </script>
 
 <style>
+    .top-icon {
+        margin: 0 15px 0;
+    }
 </style>
