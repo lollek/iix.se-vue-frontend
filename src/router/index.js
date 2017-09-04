@@ -32,7 +32,7 @@ export default new Router({
             name: 'notes',
             component: Notes
         }, {
-            path: '/note/:id',
+            path: '/notes/:id',
             name: 'note',
             component: Note,
             props: true
