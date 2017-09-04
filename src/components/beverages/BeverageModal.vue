@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Name</div>
+                        <div class="label has-text-primary">Name</div>
                         <div class="control" v-if="editing">
                             <input class="input" v-model="beverage.name">
                         </div>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Brewery</div>
+                        <div class="label has-text-primary">Brewery</div>
                         <div class="control" v-if="editing">
                             <input class="input" v-model="beverage.brewery">
                         </div>
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Percentage</div>
+                        <div class="label has-text-primary">Percentage</div>
                         <div class="control" v-if="editing">
                             <input class="input" type="number" v-model="beverage.percentage">
                         </div>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Country</div>
+                        <div class="label has-text-primary">Country</div>
                         <div class="control" v-if="editing">
                             <input class="input" v-model="beverage.country">
                         </div>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Style</div>
+                        <div class="label has-text-primary">Style</div>
                         <div class="control" v-if="editing">
                             <input class="input" v-model="beverage.style">
                         </div>
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">S Score</div>
+                        <div class="label has-text-primary">S Score</div>
                         <div class="control" v-if="editing">
                             <input class="input" type="number" min="1" max="5" v-model="beverage.sscore">
                         </div>
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">O Score</div>
+                        <div class="label has-text-primary">O Score</div>
                         <div class="control" v-if="editing">
                             <input class="input" type="number" min="1" max="5" v-model="beverage.oscore">
                         </div>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="field">
-                        <div class="label">Comment</div>
+                        <div class="label has-text-primary">Comment</div>
                         <div class="control" v-if="editing">
                             <textarea class="textarea" v-model="beverage.comment"></textarea>
                         </div>
