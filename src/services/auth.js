@@ -27,7 +27,6 @@ export default {
         const token = this.getToken()
         this.loggedIn = !!token
         if (this.loggedIn) {
-            console.log('7', jwtDecode(token))
             this.user.username = jwtDecode(token)['sub']
         }
     },
