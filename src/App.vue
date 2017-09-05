@@ -17,7 +17,7 @@
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <div class="navbar-link">
-                            Login
+                            {{ navbar.loginText }}
                         </div>
                         <div class="navbar-dropdown is-boxed is-right">
                             <div style="min-width: 270px; padding: 10px;">
@@ -93,29 +93,37 @@
                 auth: auth,
                 modal: modal,
                 loginError: '',
+                navbar: {
+                    visible: false,
+                    loginText: 'Login',
+                    toggle: function () {
+                        this.visible = !this.visible
+                    }
+                },
                 login: function () {
                     auth.login(this, data => {
                         this.loginError = ''
+                        this.setLoginText()
                     }, error => {
                         this.loginError = `${error.statusText} (${error.status})`
                         if (error.bodyText) {
                             this.loginError += ` - ${error.bodyText}`
                         }
+                        this.setLoginText()
                     })
                 },
                 logout: function () {
                     auth.logout(this)
+                    this.setLoginText()
                 },
-                navbar: {
-                    visible: false,
-                    toggle: function () {
-                        this.visible = !this.visible
-                    }
+                setLoginText: function () {
+                    this.navbar.loginText = this.auth.loggedIn ? auth.user.username : 'Login'
                 }
             }
         },
         beforeMount () {
             auth.checkLoggedIn(this)
+            this.setLoginText()
         }
     }
 </script>

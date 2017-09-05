@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode'
 
 export default {
     loggedIn: false,
@@ -22,7 +23,9 @@ export default {
     },
 
     checkLoggedIn: function (context) {
-        this.loggedIn = !!this.getToken()
+        const token = this.getToken()
+        this.loggedIn = !!token
+        this.user.username = jwtDecode(token)['sub']
     },
 
     setToken: function (token) {
@@ -35,6 +38,7 @@ export default {
     },
 
     getAuthHeader: function () {
-        return this.getToken() ? `Bearer ${this.getToken()}` : ''
+        const token = this.getToken()
+        return token ? `Bearer ${token}` : ''
     }
 }
