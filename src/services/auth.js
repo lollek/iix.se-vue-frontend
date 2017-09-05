@@ -11,7 +11,13 @@ export default {
         this.setToken(undefined)
         context.$http.post('/api/login', this.user)
             .then(data => {
+                console.log('1', data)
+                console.log('2', data.headers)
+                console.log('3', data.headers.map)
+                console.log('4', data.headers.map.authorization)
+                console.log('5', data.headers.map.authorization[0])
                 const authHeader = data.headers.map.authorization[0]
+                console.log('6', authHeader.split('Bearer ')[1])
                 this.setToken(authHeader.split('Bearer ')[1])
             })
             .then(onSuccess)
@@ -26,6 +32,7 @@ export default {
         const token = this.getToken()
         this.loggedIn = !!token
         if (this.loggedIn) {
+            console.log('7', jwtDecode(token))
             this.user.username = jwtDecode(token)['sub']
         }
     },
