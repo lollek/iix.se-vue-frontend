@@ -11,13 +11,8 @@ export default {
         this.setToken(undefined)
         context.$http.post('/api/login', this.user)
             .then(data => {
-                console.log('1', data)
-                console.log('2', data.headers)
-                console.log('3', data.headers.map)
-                console.log('4', data.headers.map['Authorization'])
-                console.log('5', data.headers.map['Authorization'][0])
-                const authHeader = data.headers.map['Authorization'][0]
-                console.log('6', authHeader.split('Bearer ')[1])
+                const authHeaderName = Object.keys(data.headers.map).find(key => key.toLowerCase() === 'authorization')
+                const authHeader = data.headers.map[authHeaderName][0]
                 this.setToken(authHeader.split('Bearer ')[1])
             })
             .then(onSuccess)
@@ -38,7 +33,11 @@ export default {
     },
 
     setToken: function (token) {
-        localStorage.setItem('jwt', token)
+        if (token) {
+            localStorage.setItem('jwt', token)
+        } else {
+            localStorage.removeItem('jwt')
+        }
         this.loggedIn = !!token
     },
 
