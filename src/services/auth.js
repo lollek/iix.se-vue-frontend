@@ -14,9 +14,9 @@ export default {
                 console.log('1', data)
                 console.log('2', data.headers)
                 console.log('3', data.headers.map)
-                console.log('4', data.headers.map.authorization)
-                console.log('5', data.headers.map.authorization[0])
-                const authHeader = data.headers.map.authorization[0]
+                console.log('4', data.headers.map['Authorization'])
+                console.log('5', data.headers.map['Authorization'][0])
+                const authHeader = data.headers.map['Authorization'][0]
                 console.log('6', authHeader.split('Bearer ')[1])
                 this.setToken(authHeader.split('Bearer ')[1])
             })
