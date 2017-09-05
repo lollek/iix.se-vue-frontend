@@ -25,7 +25,9 @@ export default {
     checkLoggedIn: function (context) {
         const token = this.getToken()
         this.loggedIn = !!token
-        this.user.username = jwtDecode(token)['sub']
+        if (this.loggedIn) {
+            this.user.username = jwtDecode(token)['sub']
+        }
     },
 
     setToken: function (token) {
