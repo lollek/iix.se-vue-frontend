@@ -45,15 +45,4 @@
 </script>
 
 <style>
-    .markdown-text > h1,h2,h3,h4,h5,h6,p {
-        margin: 10px 0;
-    }
-    .markdown-text > pre {
-        text-align: left;
-    }
-    .markdown-text > ul,ol,li {
-        text-align: left;
-        padding: inherit;
-        margin-left: 20px;
-    }
 </style>

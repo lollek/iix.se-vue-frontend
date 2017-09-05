@@ -131,4 +131,31 @@
         color: #2c3e50;
         margin: 60px 20px 60px;
     }
+    .markdown-text > p,pre {
+        margin-bottom: 1rem;
+    }
+    .markdown-text > pre {
+        text-align: left;
+    }
+    .markdown-text > h1,h2,h3,h4,h5,h6 {
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+    .markdown-text > h1 {
+        font-size: 2rem;
+    }
+    .markdown-text > h2 {
+        font-size: 1.5rem;
+    }
+    .markdown-text > h3 {
+        font-size: 1.25rem;
+    }
+    .markdown-text > h4 {
+        font-size: 1rem;
+    }
+    .markdown-text > ul,ol,li {
+        text-align: left;
+        padding: inherit;
+        margin-left: 20px;
+    }
 </style>
