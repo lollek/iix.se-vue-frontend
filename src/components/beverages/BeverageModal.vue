@@ -108,6 +108,7 @@
 <script>
     import auth from '../../services/auth.js'
     import modal from '../../services/modal.js'
+    import BeverageService from './BeverageService'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
@@ -129,44 +130,20 @@
                     this.visible = false
                 },
                 save: function () {
-                    if (this.beverage.id) {
-                        this.$http.put(`/api/beverages/${this.beverage.id}`, this.beverage, {
-                            headers: {
-                                Authorization: auth.getAuthHeader()
-                            }
-                        })
-                            .then(data => {
-                                this.beverage = data.body
-                                this.backup = Object.assign({}, this.beverage)
-                                this.editing = false
-                            })
-                            .catch(error => { modal.httpError(error) })
-                    } else {
-                        this.$http.post('/api/beverages', this.beverage, {
-                            headers: {
-                                Authorization: auth.getAuthHeader()
-                            }
-                        })
-                            .then(data => {
-                                this.beverage = data.body
-                                this.backup = Object.assign({}, this.beverage)
-                                this.editing = false
-                            })
-                            .catch(error => { modal.httpError(error) })
-                    }
+                    BeverageService.save(this, this.beverage, next => {
+                        this.beverage = next
+                        this.backup = Object.assign({}, this.beverage)
+                        this.editing = false
+                    }, error => modal.httpError(error))
                 },
                 cancel: function () {
                     this.editing = false
                     this.beverage = this.backup
                 },
                 remove: function () {
-                    this.$http.delete(`/api/beverages/${this.beverage.id}`, {
-                        headers: {
-                            Authorization: auth.getAuthHeader()
-                        }
-                    })
-                        .then(data => { this.visible = false })
-                        .catch(error => { modal.httpError(error) })
+                    BeverageService.remove(this, this.beverage, _ => {
+                        this.visible = false
+                    }, error => modal.httpError(error))
                 }
             }
         }
