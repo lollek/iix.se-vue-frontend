@@ -3,4 +3,4 @@
 docker run \
   -v "$(pwd)":/src \
   mkenney/npm:alpine \
-  'npm install && npm run build'
+  /bin/bash -c 'npm install && npm run build'
