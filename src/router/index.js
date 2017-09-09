@@ -6,7 +6,7 @@ import NotFound from '@/components/NotFound'
 import Notes from '@/components/Notes'
 import Note from '@/components/Note'
 import Beverages from '@/components/beverages/Beverages'
-import Wishlist from '@/components/Wishlist'
+import Wishlist from '@/components/wishlist/Wishlist'
 import Moria from '@/components/Moria'
 import Scratch from '@/components/Scratch'
 
