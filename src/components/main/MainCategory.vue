@@ -1,7 +1,7 @@
 <template>
     <router-link :to="{ name: category.link }">
         <div class="card">
-            <div class="card-image">
+            <div class="card-image" style="width: 300px;">
                 <figure class="image">
                     <img :src="category.img">
                 </figure>

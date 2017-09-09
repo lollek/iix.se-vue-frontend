@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="columns is-multiline">
-            <div class="column is-one-quarter" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
+            <div class="column is-narrow" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
                 <main-category :category="category"></main-category>
             </div>
         </div>
