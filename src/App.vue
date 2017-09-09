@@ -131,6 +131,11 @@
 <style>
     @import '../node_modules/bulma/css/bulma.css';
     @import '../node_modules/font-awesome/css/font-awesome.css';
+
+    p,pre {
+        margin-bottom: 1rem;
+    }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -139,9 +144,7 @@
         color: #2c3e50;
         margin: 60px 20px 60px;
     }
-    .markdown-text > p,pre {
-        margin-bottom: 1rem;
-    }
+
     .markdown-text > pre {
         text-align: left;
     }
