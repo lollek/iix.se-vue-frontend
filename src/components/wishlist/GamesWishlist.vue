@@ -8,7 +8,7 @@
                     <div class="card tablet-width-steam">
                         <div class="card-image">
                             <figure class="image">
-                                <img :src="game.image" class="tablet-size-steam">
+                                <img :src="game.image" :alt="game.name" class="tablet-size-steam">
                             </figure>
                         </div>
                         <div class="card-content">

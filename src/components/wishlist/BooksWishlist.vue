@@ -8,7 +8,7 @@
                 <div class="card tablet-width-goodreads">
                     <div class="card-image">
                         <figure class="image">
-                            <img :src="book.image" class="tablet-size-goodreads">
+                            <img :src="book.image" :alt="book.title" class="tablet-size-goodreads">
                         </figure>
                     </div>
                     <div class="card-content">

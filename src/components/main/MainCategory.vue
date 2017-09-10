@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-image tablet-max-width-300">
                 <figure class="image">
-                    <img :src="category.img">
+                    <img :src="category.img" :alt="category.text">
                 </figure>
             </div>
             <div class="card-content">
