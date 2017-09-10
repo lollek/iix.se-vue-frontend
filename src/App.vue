@@ -128,8 +128,22 @@
     }
 </script>
 
-<style>
-    @import '../node_modules/bulma/css/bulma.css';
+<style lang="scss">
+    @import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+
+    $mint: #3DA184;
+    $green: #93C54B;
+    $blue: #29ABE0;
+    $orange: #F47C3C;
+    $red: #d9534f;
+
+    $primary: $mint;
+    $info: $blue;
+    $success: $green;
+    $warning: $orange;
+    $danger: $red;
+
+    @import '../node_modules/bulma/bulma.sass';
     @import '../node_modules/font-awesome/css/font-awesome.css';
 
     p,pre {
