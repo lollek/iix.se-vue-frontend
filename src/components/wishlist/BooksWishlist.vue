@@ -5,10 +5,10 @@
         <spinner v-if="loadingData"></spinner>
         <div class="columns is-multiline" v-if="!loadingData">
             <div class="column is-narrow" v-for="book in books" :key="book.title">
-                <div class="card" style="width: 158px;">
+                <div class="card tablet-width-goodreads">
                     <div class="card-image">
                         <figure class="image">
-                            <img :src="book.image" style="width: 158px; height: 148px">
+                            <img :src="book.image" class="tablet-size-goodreads">
                         </figure>
                     </div>
                     <div class="card-content">
@@ -48,3 +48,15 @@
         }
     }
 </script>
+
+<style scoped>
+    @media screen and (min-device-width: 769px) {
+        .tablet-width-goodreads {
+            width: 158px;
+        }
+        .tablet-size-goodreads {
+            width: 158px;
+            height: 148px;
+        }
+    }
+</style>

@@ -5,10 +5,10 @@
         <div class="columns is-multiline" v-if="!loadingData">
             <div class="column is-narrow" v-for="game in games" :key="game.name">
                 <a :href=game.link>
-                    <div class="card" style="width: 184px;">
+                    <div class="card tablet-width-steam">
                         <div class="card-image">
                             <figure class="image">
-                                <img :src="game.image" style="width: 184px; height: 69px;">
+                                <img :src="game.image" class="tablet-size-steam">
                             </figure>
                         </div>
                         <div class="card-content">
@@ -49,3 +49,15 @@
         }
     }
 </script>
+
+<style scoped>
+    @media screen and (min-device-width: 769px) {
+        .tablet-width-steam {
+            width: 184px;
+        }
+        .tablet-size-steam {
+            width: 184px;
+            height: 69px;
+        }
+    }
+</style>

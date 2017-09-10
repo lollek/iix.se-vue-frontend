@@ -1,7 +1,7 @@
 <template>
     <router-link :to="{ name: category.link }">
         <div class="card">
-            <div class="card-image" style="width: 300px;">
+            <div class="card-image tablet-max-width-300">
                 <figure class="image">
                     <img :src="category.img">
                 </figure>
@@ -23,5 +23,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+    @media screen and (min-device-width: 769px) {
+        .tablet-max-width-300 {
+            width: 300px;
+        }
+    }
 </style>
