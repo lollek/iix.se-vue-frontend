@@ -28,6 +28,11 @@ export default new Router({
         { path: '/notes/:id', name: 'note', component: Note, props: true },
         { path: '/scratch', name: 'scratch', component: Scratch },
         { path: '/wishlist', name: 'wishlist', component: Wishlist },
+
+        { path: '/extern/monit', name: 'extern-monit', beforeEnter: () => { window.location = 'https://monit.iix.se' } },
+        { path: '/intern/plex', name: 'intern-plex', beforeEnter: () => { window.location = 'http://10.0.0.9:32400/web/index.html' } },
+        { path: '/intern/transmission', name: 'intern-transmission', beforeEnter: () => { window.location = 'http://david2.0:9091/transmission/web/' } },
+
         { path: '*', name: 'not-found', component: NotFound }
     ]
 })
