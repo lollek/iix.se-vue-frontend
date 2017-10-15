@@ -92,7 +92,7 @@
                     <div class="field">
                         <div class="label has-text-primary">Comment</div>
                         <div class="control" v-if="editing">
-                            <textarea class="textarea" v-model="beverage.comment"></textarea>
+                            <textarea class="textarea" rows="10" v-model="beverage.comment"></textarea>
                         </div>
                         <p v-if="!editing">
                             {{ beverage.comment }}

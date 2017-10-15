@@ -34,7 +34,7 @@
                 <div class="field">
                     <div class="label has-text-primary">Text</div>
                     <div class="control">
-                        <textarea class="textarea" v-model="note.text"></textarea>
+                        <textarea class="textarea" rows="20" v-model="note.text"></textarea>
                     </div>
                 </div>
             </div>
