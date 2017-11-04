@@ -5,7 +5,7 @@
   "author": "Olle Kvarnström <olle+git@iix.se>",
   "private": true,
   "scripts": {
-    "docker": "npm install && npm run build",
+    "docker": "rm -rf node_modules && npm install && npm run build",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
