@@ -13,7 +13,8 @@
                 </div>
             </div>
 
-            <div class="navbar-menu" :class="{ 'is-active': navbar.visible }">
+            <div class="navbar-menu"
+                 :class="navbar.visible ? ['is-active', 'zoomInDown', 'animated'] : []">
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <div class="navbar-link">
@@ -145,6 +146,26 @@
 
     @import '../node_modules/bulma/bulma.sass';
     @import '../node_modules/font-awesome/css/font-awesome.css';
+    @import '../node_modules/animate.css/animate.min.css';
+
+    .navbar-menu.animated.zoomInDown {
+        -webkit-animation-delay: 0s; /* Safari 4+ */
+        -moz-animation-delay:    0s; /* Fx 5+ */
+        -o-animation-delay:      0s; /* Opera 12+ */
+        animation-delay:         0s; /* IE 10+, Fx 29+ */
+
+        -webkit-animation-duration: 0.2s; /* Safari 4+ */
+        -moz-animation-duration:    0.2s; /* Fx 5+ */
+        -o-animation-duration:      0.2s; /* Opera 12+ */
+        animation-duration:         0.2s; /* IE 10+, Fx 29+ */
+    }
+
+    .modal-content.animated.zoomIn {
+        -webkit-animation-duration: 0.5s; /* Safari 4+ */
+        -moz-animation-duration:    0.5s; /* Fx 5+ */
+        -o-animation-duration:      0.5s; /* Opera 12+ */
+        animation-duration:         0.5s; /* IE 10+, Fx 29+ */
+    }
 
     p,pre {
         margin-bottom: 1rem;

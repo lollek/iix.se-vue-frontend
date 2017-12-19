@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "bulma": "^0.5.1",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",

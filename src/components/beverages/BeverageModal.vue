@@ -1,7 +1,7 @@
 <template>
     <div class="modal" :class="{ 'is-active': visible }">
         <div class="modal-background" @click="hide()"></div>
-        <div class="modal-content">
+        <div class="modal-content animated zoomIn">
             <div class="box">
                 <div>
                     <div class="field" v-if="auth.loggedIn">
