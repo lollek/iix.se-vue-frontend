@@ -141,6 +141,11 @@
                     this.beverage = this.backup
                 },
                 remove: function () {
+                    if (!this.beverage.id) {
+                        this.visible = false
+                        return
+                    }
+
                     BeverageService.remove(this, this.beverage, _ => {
                         this.visible = false
                     }, error => modal.httpError(error))
