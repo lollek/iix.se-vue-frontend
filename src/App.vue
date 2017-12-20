@@ -71,7 +71,7 @@
 
             <div class="modal" :class="{ 'is-active': modal.visible }">
                 <div class="modal-background" @click="modal.hide()"></div>
-                <div class="modal-content">
+                <div class="modal-content animated bounce">
                     <div class="notification" :class="[ modal.style ]">
                         <button class="delete" @click="modal.hide()"></button>
                         {{ modal.text }}
