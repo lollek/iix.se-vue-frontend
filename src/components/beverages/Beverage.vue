@@ -15,84 +15,87 @@
             </span>
         </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Name</div>
-            <div class="control" v-if="editing">
-                <input class="input" v-model="beverage.name">
+        <spinner v-if="loadingData"></spinner>
+        <div v-if="!loadingData">
+            <div class="field">
+                <div class="label has-text-primary">Name</div>
+                <div class="control" v-if="editing">
+                    <input class="input" v-model="beverage.name">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.name }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.name }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Brewery</div>
-            <div class="control" v-if="editing">
-                <input class="input" v-model="beverage.brewery">
+            <div class="field">
+                <div class="label has-text-primary">Brewery</div>
+                <div class="control" v-if="editing">
+                    <input class="input" v-model="beverage.brewery">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.brewery }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.brewery }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Percentage</div>
-            <div class="control" v-if="editing">
-                <input class="input" type="number" v-model="beverage.percentage">
+            <div class="field">
+                <div class="label has-text-primary">Percentage</div>
+                <div class="control" v-if="editing">
+                    <input class="input" type="number" v-model="beverage.percentage">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.percentage }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.percentage }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Country</div>
-            <div class="control" v-if="editing">
-                <input class="input" v-model="beverage.country">
+            <div class="field">
+                <div class="label has-text-primary">Country</div>
+                <div class="control" v-if="editing">
+                    <input class="input" v-model="beverage.country">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.country }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.country }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Style</div>
-            <div class="control" v-if="editing">
-                <input class="input" v-model="beverage.style">
+            <div class="field">
+                <div class="label has-text-primary">Style</div>
+                <div class="control" v-if="editing">
+                    <input class="input" v-model="beverage.style">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.style }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.style }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">S Score</div>
-            <div class="control" v-if="editing">
-                <input class="input" type="number" min="1" max="5" v-model="beverage.sscore">
+            <div class="field">
+                <div class="label has-text-primary">S Score</div>
+                <div class="control" v-if="editing">
+                    <input class="input" type="number" min="1" max="5" v-model="beverage.sscore">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.sscore }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.sscore }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">O Score</div>
-            <div class="control" v-if="editing">
-                <input class="input" type="number" min="1" max="5" v-model="beverage.oscore">
+            <div class="field">
+                <div class="label has-text-primary">O Score</div>
+                <div class="control" v-if="editing">
+                    <input class="input" type="number" min="1" max="5" v-model="beverage.oscore">
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.oscore }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.oscore }}
-            </p>
-        </div>
 
-        <div class="field">
-            <div class="label has-text-primary">Comment</div>
-            <div class="control" v-if="editing">
-                <textarea class="textarea" rows="10" v-model="beverage.comment"></textarea>
+            <div class="field">
+                <div class="label has-text-primary">Comment</div>
+                <div class="control" v-if="editing">
+                    <textarea class="textarea" rows="10" v-model="beverage.comment"></textarea>
+                </div>
+                <p v-if="!editing">
+                    {{ beverage.comment }}
+                </p>
             </div>
-            <p v-if="!editing">
-                {{ beverage.comment }}
-            </p>
         </div>
     </div>
 </template>
@@ -100,10 +103,12 @@
 <script>
     import auth from '../../services/auth.js'
     import modal from '../../services/modal.js'
+    import Spinner from './../Spinner.vue'
     import BeverageService from './BeverageService'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
+        components: {Spinner},
         name: 'beverage',
         props: [ 'id' ],
         data () {
