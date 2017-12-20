@@ -6,6 +6,7 @@ import NotFound from '@/components/NotFound'
 import Notes from '@/components/Notes'
 import Note from '@/components/Note'
 import Beverages from '@/components/beverages/Beverages'
+import Beverage from '@/components/beverages/Beverage'
 import Wishlist from '@/components/wishlist/Wishlist'
 import Moria from '@/components/moria/Moria'
 import MoriaGeneral from '@/components/moria/MoriaGeneral'
@@ -20,6 +21,7 @@ export default new Router({
     routes: [
         { path: '/', name: 'main', component: Main },
         { path: '/beverages', name: 'beverages', component: Beverages },
+        { path: '/beverages/:id', name: 'beverage', component: Beverage, props: true },
         { path: '/moria', name: 'moria', component: Moria },
         { path: '/moria/general', name: 'moria-general', component: MoriaGeneral },
         { path: '/moria/mage', name: 'moria-mage', component: MoriaMage },

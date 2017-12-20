@@ -19,9 +19,11 @@
         </div>
 
         <div class="field" v-if="auth.loggedIn">
-            <button class="button is-primary is-outlined is-fullwidth" @click="addBeverage()">
-                Add beverage
-            </button>
+            <router-link :to="{ name: 'beverage', params: { id: 'new' } }">
+                <button class="button is-primary is-outlined is-fullwidth">
+                    Add beverage
+                </button>
+            </router-link>
         </div>
 
         <spinner v-if="loadingData"></spinner>
@@ -40,7 +42,8 @@
                 </thead>
 
                 <tbody>
-                <tr v-for="beverage in service.filteredBeverages" :key="beverage.id" @click="showBeverage(beverage)">
+                <router-link :to="{ name: 'beverage', params: { id: beverage.id } }" tag="tr"
+                    v-for="beverage in service.filteredBeverages" :key="beverage.id">
                     <td>{{ beverage.name }}</td>
                     <td>{{ beverage.brewery }}</td>
                     <td>{{ beverage.percentage || '?' }}%</td>
@@ -48,26 +51,22 @@
                     <td>{{ beverage.style }}</td>
                     <td>{{ beverage.sscore }}</td>
                     <td>{{ beverage.oscore }}</td>
-                </tr>
+                </router-link>
                 </tbody>
             </table>
         </div>
-        <beverage-modal ref="beverageModal"></beverage-modal>
     </div>
 </template>
 
 <script>
     import Spinner from '../Spinner.vue'
-    import BeverageModal from './BeverageModal.vue'
     import modal from '../../services/modal.js'
     import auth from '../../services/auth.js'
     import BeverageService from './BeverageService'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
-        components: {
-            BeverageModal,
-            Spinner},
+        components: {Spinner},
         name: 'beverages',
         data () {
             return {
@@ -102,13 +101,6 @@
             },
             sort: function (sortBy) {
                 BeverageService.sortBeverages(sortBy)
-            },
-            showBeverage: function (beverage) {
-                this.$refs.beverageModal.show(beverage)
-            },
-            addBeverage: function () {
-                this.$refs.beverageModal.show({ category: this.category })
-                this.$refs.beverageModal.editing = true
             }
         },
         beforeMount () {
