@@ -33,7 +33,7 @@ export default new Router({
 
         { path: '/extern/monit', name: 'extern-monit', beforeEnter: () => { window.location = 'https://monit.iix.se' } },
         { path: '/intern/plex', name: 'intern-plex', beforeEnter: () => { window.location = 'http://10.0.0.11:32400/web/index.html' } },
-        { path: '/intern/transmission', name: 'intern-transmission', beforeEnter: () => { window.location = 'http://david2.0:9091/transmission/web/' } },
+        { path: '/intern/transmission', name: 'intern-transmission', beforeEnter: () => { window.location = 'http://bleach.0:9091/transmission/web/' } },
 
         { path: '*', name: 'not-found', component: NotFound }
     ]
