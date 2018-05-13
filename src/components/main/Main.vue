@@ -49,9 +49,9 @@
                     img: require('./assets/transmission.jpg'),
                     isVisible: () => auth.loggedIn
                 }, {
-                    text: 'Plex',
-                    link: 'intern-plex',
-                    img: require('./assets/plex.jpg'),
+                    text: 'Emby',
+                    link: 'intern-emby',
+                    img: require('./assets/emby.jpg'),
                     isVisible: () => auth.loggedIn
                 }, {
                     text: 'Monit',
