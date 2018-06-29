@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 set -euo pipefail
 
-git ff
-npm run build
+git pull --ff-only
+sudo hooks/pre-build
+#npm run build
 sudo docker build -t loll3k/iix.se-vue-frontend .
 sudo docker push loll3k/iix.se-vue-frontend
