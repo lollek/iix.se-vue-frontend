@@ -1,2 +1,0 @@
-#! /usr/bin/env sh
-exec docker run -p80:80 --rm -it loll3k/iix.se-vue-frontend

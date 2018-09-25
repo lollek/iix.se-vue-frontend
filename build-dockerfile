@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-set -euo pipefail
-
-#git pull --ff-only
-#sudo hooks/pre-build
-docker run --rm -v "$(pwd)":/src mkenney/npm:node-8-debian npm run build
-sudo docker build -t loll3k/iix.se-vue-frontend .
-#sudo docker push loll3k/iix.se-vue-frontend
