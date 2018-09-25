@@ -32,8 +32,8 @@ export default new Router({
         { path: '/wishlist', name: 'wishlist', component: Wishlist },
 
         { path: '/extern/monit', name: 'extern-monit', beforeEnter: () => { window.location = 'https://monit.iix.se' } },
-        { path: '/intern/emby', name: 'intern-emby', beforeEnter: () => { window.location = 'http://bleach:8096/web/home.html' } },
-        { path: '/intern/transmission', name: 'intern-transmission', beforeEnter: () => { window.location = 'http://bleach.0:9091/transmission/web/' } },
+        { path: '/intern/emby', name: 'intern-emby', beforeEnter: () => { window.location = 'http://10.0.0.11:8096/web/home.html' } },
+        { path: '/intern/transmission', name: 'intern-transmission', beforeEnter: () => { window.location = 'http://10.0.0.11:9091/transmission/web/' } },
 
         { path: '*', name: 'not-found', component: NotFound }
     ]
