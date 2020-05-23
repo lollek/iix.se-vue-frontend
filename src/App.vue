@@ -15,6 +15,12 @@
 
             <div class="navbar-menu"
                  :class="navbar.visible ? ['is-active', 'zoomInDown', 'animated'] : []">
+                <div class="navbar-start">
+                    <router-link :to="{ name: category.link }" class="navbar-item" v-for="category in categories" :key="category.text" v-if="category.isVisible()">
+                        <span class="icon has-text-primary" :class="category.icon"></span>
+                        <span>{{ category.text }}</span>
+                    </router-link>
+                </div>
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <div class="navbar-link">
@@ -101,6 +107,55 @@
                         this.visible = !this.visible
                     }
                 },
+                categories: [{
+                    text: 'Notes',
+                    link: 'notes',
+                    icon: 'fa-sticky-note',
+                    // img: require('./assets/notes.jpg'),
+                    isVisible: () => true
+                }, {
+                    text: 'Beers',
+                    link: 'beverages',
+                    icon: 'fa-beer',
+                    // img: require('./assets/beers.jpg'),
+                    isVisible: () => true
+                }, {
+                    text: 'Wishlist',
+                    link: 'wishlist',
+                    icon: 'fa-gift',
+                    // img: require('./assets/wishlist.jpg'),
+                    isVisible: () => true
+                }, {
+                    text: 'Moria',
+                    link: 'moria',
+                    icon: 'fa-tree',
+                    // img: require('./assets/moria.jpg'),
+                    isVisible: () => true
+                }, {
+                    text: 'Scratch',
+                    link: 'scratch',
+                    icon: 'fa-pencil',
+                    // img: require('./assets/scratch.jpg'),
+                    isVisible: () => auth.loggedIn
+                }, {
+                    text: 'Transmission',
+                    link: 'intern-transmission',
+                    icon: 'fa-bolt',
+                    // img: require('./assets/transmission.jpg'),
+                    isVisible: () => auth.loggedIn
+                }, {
+                    text: 'Emby',
+                    link: 'intern-emby',
+                    icon: 'fa-tv',
+                    // img: require('./assets/emby.jpg'),
+                    isVisible: () => auth.loggedIn
+                }, {
+                    text: 'Monit',
+                    link: 'extern-monit',
+                    icon: 'fa-eye',
+                    // img: require('./assets/monit.jpg'),
+                    isVisible: () => auth.loggedIn
+                }],
                 login: function () {
                     auth.login(this, data => {
                         this.loginError = ''
@@ -132,14 +187,15 @@
 <style lang="scss">
     @import '../node_modules/bulma/sass/utilities/initial-variables.sass';
 
-    $mint: #3DA184;
-    $green: #93C54B;
-    $blue: #29ABE0;
-    $orange: #F47C3C;
-    $red: #d9534f;
+    $red: #f07178;
+    $green: #5af78e;
+    $orange: #ffcb6b;
+    $blue: #57c7ff;
+    $purple: #c792ea;
+    //$white: #eeffff;
 
-    $primary: $mint;
-    $info: $blue;
+    $primary: $blue;
+    $info: $purple;
     $success: $green;
     $warning: $orange;
     $danger: $red;
