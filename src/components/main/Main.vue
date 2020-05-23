@@ -43,21 +43,6 @@
                     link: 'scratch',
                     img: require('./assets/scratch.jpg'),
                     isVisible: () => auth.loggedIn
-                }, {
-                    text: 'Transmission',
-                    link: 'intern-transmission',
-                    img: require('./assets/transmission.jpg'),
-                    isVisible: () => auth.loggedIn
-                }, {
-                    text: 'Emby',
-                    link: 'intern-emby',
-                    img: require('./assets/emby.jpg'),
-                    isVisible: () => auth.loggedIn
-                }, {
-                    text: 'Monit',
-                    link: 'extern-monit',
-                    img: require('./assets/monit.jpg'),
-                    isVisible: () => auth.loggedIn
                 }]
             }
         }
